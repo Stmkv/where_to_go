@@ -1,30 +1,46 @@
-from django.shortcuts import render
+from textwrap import indent
+
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, render
+
+from .models import Place
 
 
 def index(request):
-    context = {
-        "place": {
-            "type": "FeatureCollection",
-            "features": [
-                {
-                    "type": "Feature",
-                    "geometry": {"type": "Point", "coordinates": [37.62, 55.793676]},
-                    "properties": {
-                        "title": "«Легенды Москвы",
-                        "placeId": "moscow_legends",
-                        "detailsUrl": "./static/places/moscow_legends.json",
-                    },
+    places = Place.objects.all()
+    place_json = {"type": "FeatureCollection", "features": []}
+
+    for place in places:
+        place_json["features"].append(
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [place.longitude, place.latitude],
                 },
-                {
-                    "type": "Feature",
-                    "geometry": {"type": "Point", "coordinates": [37.64, 55.753676]},
-                    "properties": {
-                        "title": "Крыши24.рф",
-                        "placeId": "roofs24",
-                        "detailsUrl": "./static/places/roofs24.json",
-                    },
+                "properties": {
+                    "title": place.title,
+                    "placeId": place.id,
+                    "detailsUrl": "./static/places/moscow_legends.json",
                 },
-            ],
-        }
-    }
+            },
+        )
+    context = {"places": place_json}
     return render(request, "places/index.html", context=context)
+
+
+def place(request, post_id):
+    place = get_object_or_404(Place, pk=post_id)
+    about_place = {
+        "title": place.title,
+        "imgs": [image.image.url for image in place.images.all()],
+        "discription_short": place.description_short,
+        "discription_long": place.description_long,
+        "coordinates": {
+            "lat": place.latitude,
+            "lng": place.longitude,
+        },
+    }
+    return JsonResponse(
+        about_place, json_dumps_params={"ensure_ascii": False, "indent": 4}
+    )
