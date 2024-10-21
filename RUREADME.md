@@ -28,6 +28,7 @@ pip install -r requriments.txt
 
 `http://<ip:порт>/admin/`
 
-Где можно сорздать новую достопримечательность:
+Где можно создать новую достопримечательность:
 
-![1729525013543](.gitbook\assets\1729525013543.png "Пример заполненого места")
+![image](https://github.com/user-attachments/assets/5c82deeb-5c33-4d63-a400-979e4d064d7d)
+
