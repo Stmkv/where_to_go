@@ -1,3 +1,5 @@
+from tabnanny import verbose
+
 from django.db import models
 
 
@@ -13,11 +15,15 @@ class Place(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = "Место"
+        verbose_name_plural = "Места"
+
 
 class Image(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="images")
     image = models.ImageField("Фото", upload_to="images/")
-    number_image = models.IntegerField(default=0)
+    number_image = models.IntegerField("Номер картинки", default=0)
 
     def __str__(self):
         return f"{self.number_image}. {self.place.title}"
