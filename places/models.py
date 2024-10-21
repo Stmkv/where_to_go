@@ -1,5 +1,3 @@
-from tabnanny import verbose
-
 from django.db import models
 
 
@@ -16,6 +14,7 @@ class Place(models.Model):
         return self.title
 
     class Meta:
+        ordering = ["title"]
         verbose_name = "Место"
         verbose_name_plural = "Места"
 
@@ -27,3 +26,6 @@ class Image(models.Model):
 
     def __str__(self):
         return f"{self.number_image}. {self.place.title}"
+
+    class Meta:
+        ordering = ["number_image"]
