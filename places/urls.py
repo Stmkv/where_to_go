@@ -1,8 +1,8 @@
 from django.urls import path
 
-from map import views
+from places import views
 
-app_name = "map"
+app_name = "places"
 
 urlpatterns = [
     path("", views.index, name="index"),
