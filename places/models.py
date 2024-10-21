@@ -7,7 +7,7 @@ class Place(models.Model):
     description_short = models.CharField(
         "Краткое описание", max_length=255, blank=True, null=True
     )
-    content = HTMLField("Длинное описание", blank=True, null=True)
+    description_long = HTMLField("Длинное описание", blank=True, null=True)
     longitude = models.FloatField("Долгота")
     latitude = models.FloatField("Широта")
 
