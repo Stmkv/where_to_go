@@ -28,7 +28,7 @@ pip install -r requriments.txt
 
 `http://<ip:порт>/admin/`
 
-Где можно сорздать новую достопримечательность:
+Где можно создать описание и загрузить картинки новой достопримечательности:
 
 ![image](https://github.com/user-attachments/assets/e6315c03-b510-48a8-b3c8-21d2f70f62e0)
 
