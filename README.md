@@ -30,5 +30,6 @@ pip install -r requriments.txt
 
 Где можно сорздать новую достопримечательность:
 
-![image](https://github.com/user-attachments/assets/f9c369a0-e58c-47d8-8ec8-7e9757bd3988)
+![image](https://github.com/user-attachments/assets/e6315c03-b510-48a8-b3c8-21d2f70f62e0)
+
 
