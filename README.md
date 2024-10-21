@@ -5,7 +5,6 @@
 Ознакомиться с бета версией сайта можно по ссылке https://stmkvdev.pythonanywhere.com/
 ![{64E4F824-DBC9-454C-8638-095FBC5EDE25}](https://github.com/user-attachments/assets/9f062c67-ef3d-4aec-beb8-3f74965e4632)
 
-
 ## Как запустить
 
 Чтобы запустить проект должен быть установлен python 3.10.
@@ -35,3 +34,28 @@ pip install -r requriments.txt
 Где можно создать описание и загрузить картинки новой достопримечательности:
 
 ![image](https://github.com/user-attachments/assets/e6315c03-b510-48a8-b3c8-21d2f70f62e0)
+
+## Автоматическая загрузка данных
+
+Для автоматической загрузки данных необходим json файл следующего формата:
+
+```
+{
+    "title": "Водопад Радужный",
+    "imgs": [
+        "https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/media/7252a5cbb831eec01d98f3c234f2dfc5.jpg",
+    ],
+    "description_short": "<Ваш текст>",
+    "description_long": "<Ваш текст>",
+    "coordinates": {
+        "lng": "<Широта>,
+        "lat": "<Долгота>"
+    }
+}
+```
+
+Чтобы загрузить, необходимо использовать команду:
+
+```
+python manage.py load_place <url адрес на json файл>
+```
