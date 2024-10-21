@@ -7,25 +7,24 @@ from .models import Place
 
 def index(request):
     places = Place.objects.all()
-    place_json = {"type": "FeatureCollection", "features": []}
 
-    for place in places:
-        place_json["features"].append(
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [place.longitude, place.latitude],
-                },
-                "properties": {
-                    "title": place.title,
-                    "placeId": place.id,
-                    "detailsUrl": reverse(
-                        "places:place", kwargs={"place_id": place.pk}
-                    ),
-                },
+    features = [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [place.longitude, place.latitude],
             },
-        )
+            "properties": {
+                "title": place.title,
+                "placeId": place.id,
+                "detailsUrl": reverse("places:place", kwargs={"place_id": place.pk}),
+            },
+        }
+        for place in places
+    ]
+
+    place_json = {"type": "FeatureCollection", "features": features}
     context = {"places": place_json}
     return render(request, "places/index.html", context=context)
 
