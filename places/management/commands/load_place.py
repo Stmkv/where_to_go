@@ -40,5 +40,7 @@ class Command(BaseCommand):
             response.raise_for_status()
             filename = f"{num}. {decoded_response['description_short']}.jpg"
             Image.objects.create(
-                place=place, image=ContentFile(response.content, filename)
+                place=place,
+                image=ContentFile(response.content, filename),
+                number_image=num,
             )
