@@ -30,4 +30,5 @@ pip install -r requriments.txt
 
 Где можно сорздать новую достопримечательность:
 
-![1729525013543](.gitbook\assets\1729525013543.png "Пример заполненого места")
+![image](https://github.com/user-attachments/assets/f9c369a0-e58c-47d8-8ec8-7e9757bd3988)
+
