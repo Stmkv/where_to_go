@@ -6,5 +6,5 @@ app_name = "places"
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("place/<int:post_id>/", views.place, name="place"),
+    path("place/<int:place_id>/", views.place, name="place"),
 ]

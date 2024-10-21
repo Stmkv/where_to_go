@@ -1,7 +1,6 @@
-from textwrap import indent
-
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 
 from .models import Place
 
@@ -21,7 +20,9 @@ def index(request):
                 "properties": {
                     "title": place.title,
                     "placeId": place.id,
-                    "detailsUrl": "./static/places/moscow_legends.json",
+                    "detailsUrl": reverse(
+                        "places:place", kwargs={"place_id": place.pk}
+                    ),
                 },
             },
         )
@@ -29,13 +30,13 @@ def index(request):
     return render(request, "places/index.html", context=context)
 
 
-def place(request, post_id):
-    place = get_object_or_404(Place, pk=post_id)
+def place(request, place_id):
+    place = get_object_or_404(Place, pk=place_id)
     about_place = {
         "title": place.title,
         "imgs": [image.image.url for image in place.images.all()],
-        "discription_short": place.description_short,
-        "discription_long": place.description_long,
+        "description_short": place.description_short,
+        "description_long": place.description_long,
         "coordinates": {
             "lat": place.latitude,
             "lng": place.longitude,
