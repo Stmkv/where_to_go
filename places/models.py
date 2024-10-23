@@ -28,7 +28,7 @@ class Image(models.Model):
         verbose_name="Достопримечательность",
     )
     image = models.ImageField("Фото", upload_to="images/")
-    number_image = models.IntegerField("Номер картинки", default=0)
+    number_image = models.IntegerField("Номер картинки", default=0, db_index=True)
 
     class Meta:
         ordering = ["number_image"]
