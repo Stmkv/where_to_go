@@ -24,7 +24,7 @@ def index(request):
         for place in places
     ]
 
-    place_json = {"type": "FeatureCollection", "features": features}
+    place_json = {"features": features}
     context = {"places": place_json}
     return render(request, "places/index.html", context=context)
 
