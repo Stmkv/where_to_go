@@ -4,6 +4,9 @@ from django.utils.html import format_html
 
 from .models import Image, Place
 
+MAX_WIDTH_IMAGE = 150
+MAX_HEIGHT_IMAGE = 150
+
 
 class ImageLine(SortableStackedInline):
     model = Image
@@ -16,7 +19,10 @@ class ImageLine(SortableStackedInline):
 
     def get_preview(self, obj):
         return format_html(
-            '<img src="{url}" width="150" height="150" />'.format(url=obj.image.url)
+            '<img src="{}" style="max-width: {}px; max-height: {}px;"/>',
+            obj.image.url,
+            MAX_WIDTH_IMAGE,
+            MAX_HEIGHT_IMAGE,
         )
 
     get_preview.short_description = "Картинка"
