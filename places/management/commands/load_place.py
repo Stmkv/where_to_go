@@ -27,8 +27,8 @@ class Command(BaseCommand):
         try:
             place, create = Place.objects.get_or_create(
                 title=decoded_response["title"],
-                description_short=decoded_response["description_short"],
-                description_long=decoded_response["description_long"],
+                short_description=decoded_response["description_short"],
+                long_description=decoded_response["description_long"],
                 longitude=decoded_response["coordinates"]["lng"],
                 latitude=decoded_response["coordinates"]["lat"],
             )
