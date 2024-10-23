@@ -1,9 +1,11 @@
+from tabnanny import verbose
+
 from django.db import models
 from tinymce.models import HTMLField
 
 
 class Place(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField("Заголовок", max_length=255)
     description_short = models.TextField("Краткое описание", blank=True, null=True)
     description_long = HTMLField("Длинное описание", blank=True, null=True)
     longitude = models.FloatField("Долгота")
@@ -19,7 +21,12 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="images")
+    place = models.ForeignKey(
+        Place,
+        on_delete=models.CASCADE,
+        related_name="images",
+        verbose_name="Достопримечательность",
+    )
     image = models.ImageField("Фото", upload_to="images/")
     number_image = models.IntegerField("Номер картинки", default=0)
 
@@ -28,3 +35,5 @@ class Image(models.Model):
 
     class Meta:
         ordering = ["number_image"]
+        verbose_name = "Картинка"
+        verbose_name_plural = "Картинки"
