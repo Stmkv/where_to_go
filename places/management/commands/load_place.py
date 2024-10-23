@@ -28,10 +28,12 @@ class Command(BaseCommand):
 
             place, create = Place.objects.get_or_create(
                 title=decoded_response["title"],
-                short_description=decoded_response["description_short"],
-                long_description=decoded_response["description_long"],
-                longitude=decoded_response["coordinates"]["lng"],
-                latitude=decoded_response["coordinates"]["lat"],
+                defaults={
+                    "short_description": decoded_response["description_short"],
+                    "long_description": decoded_response["description_long"],
+                    "longitude": decoded_response["coordinates"]["lng"],
+                    "latitude": decoded_response["coordinates"]["lat"],
+                },
             )
 
             for num, url in enumerate(decoded_response["imgs"], start=1):
