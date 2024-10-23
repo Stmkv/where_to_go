@@ -20,7 +20,7 @@ ALLOWED_HOSTS=<Используемный адрес хоста>
 Далее нужно установить необходимые зависимости командой
 
 ```
-pip install -r requriments.txt
+pip install -r requirements.txt
 ```
 
 Командной `python3 manage.py runserver` можно запустить сайт.
